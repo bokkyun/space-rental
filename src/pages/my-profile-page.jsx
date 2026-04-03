@@ -6,7 +6,7 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Chip from '@mui/material/Chip';
@@ -36,7 +36,6 @@ function MyProfilePage() {
     <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', bgcolor: 'grey.50' }}>
       <AppHeader title='마이프로필' showNotification={false} />
       <Box sx={{ flex: 1, pb: '70px' }}>
-        {/* 프로필 섹션 */}
         <Box sx={{ bgcolor: 'white', p: 3, display: 'flex', alignItems: 'center', gap: 2 }}>
           <Avatar sx={{ width: 64, height: 64, bgcolor: 'primary.main', fontSize: '24px' }}>
             {user?.user_metadata?.name?.[0] || <PersonOutlineIcon />}
@@ -59,20 +58,19 @@ function MyProfilePage() {
 
         <Box sx={{ mt: 1 }} />
 
-        {/* 메뉴 리스트 */}
         <Box sx={{ bgcolor: 'white' }}>
           <List disablePadding>
-            <ListItem button onClick={() => navigate('/notifications')} sx={{ py: 1.5 }}>
+            <ListItemButton onClick={() => navigate('/notifications')} sx={{ py: 1.5 }}>
               <ListItemIcon sx={{ minWidth: 40 }}><NotificationsNoneIcon color='action' /></ListItemIcon>
               <ListItemText primary='알림' />
               <ChevronRightIcon color='action' />
-            </ListItem>
+            </ListItemButton>
             <Divider component='li' />
-            <ListItem button sx={{ py: 1.5 }}>
+            <ListItemButton sx={{ py: 1.5 }}>
               <ListItemIcon sx={{ minWidth: 40 }}><LanguageIcon color='action' /></ListItemIcon>
               <ListItemText primary='언어 변경' secondary='한국어' />
               <ChevronRightIcon color='action' />
-            </ListItem>
+            </ListItemButton>
           </List>
         </Box>
 
@@ -81,10 +79,10 @@ function MyProfilePage() {
             <Box sx={{ mt: 1 }} />
             <Box sx={{ bgcolor: 'white' }}>
               <List disablePadding>
-                <ListItem button onClick={handleLogout} sx={{ py: 1.5 }}>
+                <ListItemButton onClick={handleLogout} sx={{ py: 1.5 }}>
                   <ListItemIcon sx={{ minWidth: 40 }}><LogoutIcon color='error' /></ListItemIcon>
                   <ListItemText primary='로그아웃' primaryTypographyProps={{ color: 'error' }} />
-                </ListItem>
+                </ListItemButton>
               </List>
             </Box>
           </>

@@ -3,6 +3,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import theme from './theme';
 import './index.css';
+import ErrorBoundary from './components/common/error-boundary';
 
 import HomePage from './pages/home-page';
 import ExplorePage from './pages/explore-page';
@@ -17,6 +18,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
+      <ErrorBoundary>
       <HashRouter>
         <Routes>
           <Route path='/' element={<HomePage />} />
@@ -29,6 +31,7 @@ function App() {
           <Route path='/notifications' element={<NotificationPage />} />
         </Routes>
       </HashRouter>
+      </ErrorBoundary>
     </ThemeProvider>
   );
 }
