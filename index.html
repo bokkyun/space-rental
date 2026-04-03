@@ -7,7 +7,15 @@
     <title>my-react-app</title>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root"><p style="padding:20px;font-family:sans-serif;color:#555;">앱 로딩 중...</p></div>
+    <script>
+      window.addEventListener('error', function(e) {
+        document.body.innerHTML = '<pre style="color:red;padding:20px;font-size:14px;">JS Error: ' + e.message + '\nFile: ' + (e.filename||'') + '\nLine: ' + e.lineno + '\n\n' + (e.error && e.error.stack ? e.error.stack : '') + '</pre>';
+      }, true);
+      window.addEventListener('unhandledrejection', function(e) {
+        document.body.innerHTML = '<pre style="color:red;padding:20px;font-size:14px;">Promise Error: ' + (e.reason && e.reason.stack ? e.reason.stack : e.reason) + '</pre>';
+      });
+    </script>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

@@ -1,16 +1,17 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabase';
 
-/**
- * 매물 목록 조회 훅
- * @returns {{ properties: array, loading: boolean, error: string }}
- */
 export function useProperties(filters = {}) {
   const [properties, setProperties] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    if (!supabase) {
+      setLoading(false);
+      setError('DB 연결 안됨');
+      return;
+    }
     async function fetchProperties() {
       setLoading(true);
       try {
@@ -45,16 +46,16 @@ export function useProperties(filters = {}) {
   return { properties, loading, error };
 }
 
-/**
- * 매물 단건 조회 훅
- */
 export function useProperty(id) {
   const [property, setProperty] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (!id) return;
+    if (!id || !supabase) {
+      setLoading(false);
+      return;
+    }
     async function fetchProperty() {
       setLoading(true);
       try {
@@ -84,13 +85,11 @@ export function useProperty(id) {
   return { property, loading, error };
 }
 
-/**
- * 스토리 목록 조회 훅
- */
 export function useStories() {
   const [stories, setStories] = useState([]);
 
   useEffect(() => {
+    if (!supabase) return;
     async function fetchStories() {
       const { data } = await supabase
         .from('stories')
