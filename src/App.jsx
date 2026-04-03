@@ -13,6 +13,7 @@ import BookmarkPage from './pages/bookmark-page';
 import MyProfilePage from './pages/my-profile-page';
 import LoginPage from './pages/login-page';
 import NotificationPage from './pages/notification-page';
+import CreatePostPage from './pages/create-post-page';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path='/profile' element={<MyProfilePage />} />
           <Route path='/login' element={<LoginPage />} />
           <Route path='/notifications' element={<NotificationPage />} />
+          <Route path='/create-post' element={<CreatePostPage />} />
         </Routes>
       </HashRouter>
       </ErrorBoundary>
